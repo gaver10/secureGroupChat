@@ -1,4 +1,5 @@
 /**
+ * CS475 Secure Gropu Chat Server
  * 
  */
 
