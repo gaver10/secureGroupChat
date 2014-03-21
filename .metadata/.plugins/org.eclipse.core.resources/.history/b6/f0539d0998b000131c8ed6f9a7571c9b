@@ -3,7 +3,6 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -16,7 +15,6 @@ import javax.swing.SwingUtilities;
 public class GUI extends JFrame {
 
 	private String name;
-	private String server;
 	public GUI() {
         	// set up window
 	       setTitle("Simple example");
@@ -36,16 +34,12 @@ public class GUI extends JFrame {
 	       //set up chat input box
 	       final JTextField chatInput = new JTextField(40);
 	       
-	       
-	       
-	       ActionListener AL = new ActionListener(){
+	       chatInput.addActionListener(new ActionListener(){
 	    	   public void actionPerformed(ActionEvent event){
 	    		   String input = chatInput.getText();
 	    		   
 	    		   if(input != null){
 	    			   
-	    			   
-	    			   chatArea.append(input+"\n");
 	    			   /*do stuff with input
 	    			   
 	    			   chatArea.append("");
@@ -56,18 +50,12 @@ public class GUI extends JFrame {
 	    			   chatInput.setText("");
 	    		   }
 	    	   }
-	       };
-	       
-	       chatInput.addActionListener(AL);
-	       JButton button = new JButton("Send");
-	       button.addActionListener(AL);
-	       
+	       });
+
 	       name = JOptionPane.showInputDialog("Enter Name: ");
-	       server = JOptionPane.showInputDialog("Enter Server: ");
 	       this.setLayout(new FlowLayout());
 	       this.add(chatScroll, SwingConstants.CENTER);
 	       this.add(chatInput);
-	       this.add(button);
 
 
 

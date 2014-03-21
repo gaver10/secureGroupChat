@@ -44,8 +44,6 @@ public class GUI extends JFrame {
 	    		   
 	    		   if(input != null){
 	    			   
-	    			   
-	    			   chatArea.append(input+"\n");
 	    			   /*do stuff with input
 	    			   
 	    			   chatArea.append("");
