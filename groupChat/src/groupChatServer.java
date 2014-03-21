@@ -1,5 +1,7 @@
+import java.util.HashMap;
+
 /**
- * CS475 Secure Gropu Chat Server
+ * CS475 Secure Group Chat Server
  * 
  */
 
@@ -8,6 +10,14 @@
  *
  */
 public class groupChatServer {
+	// hashmap of threads
+	// hashmap of sessions 
+	HashMap <String, serverSession> chatSessions = new HashMap<String, serverSession>();
+	
+	// arraylist of listeners
+	
+	
+	
 
 	/**
 	 * @param args
