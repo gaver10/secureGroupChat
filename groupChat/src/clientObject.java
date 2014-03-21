@@ -1,4 +1,7 @@
 /**
+ * CS475 Secure Group Chat Server 
+ * Ken Fox, Gavin Rapp, Andrea Pavia
+ * 
  * base client object 
  * contains field common to all client objects
  * 
@@ -13,10 +16,12 @@ public class clientObject {
 	protected String nick;
 	protected String id;
 	protected boolean accepted;
+	protected privs clientPrivs;
 	
 	clientObject() {
 		// creates a new id string for a client object
 		this.id = new ID().toString();
+		this.clientPrivs = new privs();
 	
 	}
 
