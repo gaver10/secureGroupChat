@@ -46,9 +46,9 @@ public class groupChatServer {
 	 */
 	public static void main(String[] args) throws IOException {
 		myServerHostName = java.net.InetAddress.getLocalHost().getHostName(); // get my hostname
-		myServerIPAddress = java.net.InetAddress.getLocalHost().toString(); // my IP address
-
-		
+		myServerIPAddress = java.net.InetAddress.getLocalHost().getHostAddress().toString(); // my IP address
+		System.out.println("Hostname " + myServerHostName +", IP Address " + myServerIPAddress +", Port " + serverPort);
+		System.out.println("Started...");
 		
 		//threads.add(new Thread(srv) ) ; 
 		
@@ -58,6 +58,7 @@ public class groupChatServer {
 		for (Thread t : threads) {
 			t.start();
 		}
+	System.out.println("Server shutdown completed");
 	
 	}
 
