@@ -5,12 +5,8 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public
-class EchoServer {
-    public
-            static
-    void
-            main(String[] arstring) {
+public class EchoServer {
+    public static void main(String[] args) {
         try {
             SSLServerSocketFactory sslserversocketfactory =
                     (SSLServerSocketFactory) SSLServerSocketFactory.getDefault();
