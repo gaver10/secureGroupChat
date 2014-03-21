@@ -32,7 +32,7 @@ public class groupChatServer {
 	 * this is ovrridden on the command line by specifying the -P <nnnnn>
 	 * switch and value
 	 */
-	private static int serverPort = 6667; // this is where I listen for connections  by default
+	private static int serverPort = 9999; // this is where I listen for connections  by default
 	/**
 	 * Data structure for parent to manage threads with
 	 * because I instantiate the various objects with arguments and so
