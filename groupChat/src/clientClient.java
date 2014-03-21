@@ -1,4 +1,7 @@
 /**
+ *  * CS475 Secure Group Chat client
+ * Ken Fox, Gavin Rapp, Andrea Pavia
+ * 
  * This is the extension of the clientObject that is used in the chat client 
  * because it contains fields that are not common to both the client and server
  * programs.

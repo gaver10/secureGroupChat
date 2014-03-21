@@ -1,4 +1,7 @@
 /**
+ * CS475 Secure Group Chat Server
+ * Ken Fox, Gavin Rapp, Andrea Pavia
+ * 
  * ID class
  * Generates a unique identifier and stores it
  * horked from my CS350 survey project

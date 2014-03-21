@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 
 /**
+ * * CS475 Secure Group Chat Server
+ * Ken Fox, Gavin Rapp, Andrea Pavia
+ * 
  * Maintains a list of cliens in the system that have approved the entry 
  * of a new member to an existing chat session. Skipped when new chat room/session is created
  * 

@@ -1,10 +1,13 @@
-import java.util.HashMap;
-
 /**
+ * CS475 Secure Group Chat Server
+ * Ken Fox, Gavin Rapp, Andrea Pavia
+ * 
  * server session object
  * keeps track of the session by it's name and ID and contains a list of the clients currently in the 
  * chat room or session .
  */
+
+import java.util.HashMap;
 
 /**
  * @author kenfox
