@@ -15,6 +15,10 @@ import javax.swing.SwingUtilities;
 
 public class GUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String server;
 	public GUI() {
