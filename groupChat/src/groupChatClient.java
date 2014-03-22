@@ -1,3 +1,17 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
+
 /**
  * CS475 Secure Group Chat Server
  * Ken Fox, Gavin Rapp, Andrea Pavia
@@ -22,15 +36,22 @@ public class groupChatClient {
 	 * switch and value
 	 */
 	private static int serverPort = 9999; // this is where I listen for connections  by default
+		
+	/**
+	 * structure to keep track of clients I think are in the current session with me
+	 * There's a much better way to this in retrospect.
+	 */
+	List <clientClient> sessionMembers = new ArrayList <clientClient>();
 	
-	
+	private static clientClient self ;
+	static String name="test client";// override out of testing
+	protected static String encoding = "UTF-8"; // character encoding for messages
 	
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		parseargs(args); // arguments supplied on the commandline invocation
 
 		//myServerHostName = java.net.InetAddress.getLocalHost().getHostName(); // get my hostname
@@ -40,8 +61,10 @@ public class groupChatClient {
 		//System.out.println("Hostname " + myServerHostName +", IP Address " + myServerIPAddress +", Port " + serverPort);
 		System.out.println("Started...");
 		
-		
-		
+		// create self 
+		self = new clientClient();
+		self.setNick(name);
+
 		
 		
 		
@@ -53,6 +76,74 @@ public class groupChatClient {
 	 */
 	public void sendMessageToServer() {
 		
+	}
+	
+	/** encrypts and sends a message to all of the clients in the
+	 * the session
+	 */
+	public void sendMessageToClients(String message) {
+		// convert message from a string to byte for the encryption routine
+		byte[] cleartextData = message.getBytes();
+		byte[] ciphertext = null;
+		// loop over all of the clients in the seesionMembers list
+		for (clientClient currClient : sessionMembers ) {
+			// and ecncrypt the message
+			ciphertext = self.encryptMessage( cleartextData, currClient.getKeyPublic() );
+			// send the message to the client through the server
+			sendClientMessageThroughServer(currClient,ciphertext);
+		}
+	}// sendMessageToClients
+	
+	public void sendClientMessageThroughServer(clientClient client, byte[] ciphertext) {
+	
+        try {
+            SSLSocketFactory sslsocketfactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
+            SSLSocket sslsocket = (SSLSocket) sslsocketfactory.createSocket(myServerHostName, serverPort);
+
+            InputStream inputstream = System.in;
+            InputStreamReader inputstreamreader = new InputStreamReader(inputstream);
+            BufferedReader bufferedreader = new BufferedReader(inputstreamreader);
+
+            OutputStream outputstream = sslsocket.getOutputStream();
+            OutputStreamWriter outputstreamwriter = new OutputStreamWriter(outputstream);
+            BufferedWriter bufferedwriter = new BufferedWriter(outputstreamwriter);
+
+            // encode message to server 
+            String destination = client.getId();
+            //convert the encrypted bytes to a string for transmission
+            // protocol is destination id is wrapped in parens for simple parsing by server
+            String payload = "(" + destination + ")" + new String (ciphertext, encoding);
+            bufferedwriter.write(payload );
+            bufferedwriter.flush();
+        
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+		
+		
+	}
+	
+	public byte[] receiveClientMessageThroughServer( ){
+		
+	}
+	
+	
+	/**
+	 * takes a stream of bytes that were encoded with my public key,
+	 * decryptes them using my private key, and converts the byte array back
+	 * into a string to be displayed in the chat window.
+	 * @param ciphertext
+	 * @param encoding
+	 * @return
+	 */
+	public String receiveClientMessage(byte[] ciphertext, String encoding) {
+		String cleartext = "";
+		try {
+			cleartext = new String( self.decryptMessage( ciphertext ), encoding);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return cleartext;
 	}
 	
 	/**

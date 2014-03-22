@@ -72,8 +72,8 @@ public class acceptList {
 	 * @param client
 	 */
 	public void removePending(serverClient client){
-		// cleans out a client id incase it has been added more than once.
-		// removes the 
+		// cleans out a client id in case it has been added more than once.
+		// removes the object from the list
 		while ( pending.indexOf(client) > -1 ) {
 				pending.remove(client);
 			}

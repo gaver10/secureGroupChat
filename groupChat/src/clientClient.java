@@ -112,7 +112,7 @@ public class clientClient extends clientObject {
 	 * @param keyPublic
 	 * @return
 	 */
-	public byte[] rsaEncrypt(byte[] cleartextData, Key keyPublic) {
+	public byte[] encryptMessage(byte[] cleartextData, Key keyPublic) {
 		  Cipher cipher;
 		  byte[] cipherData = null;
 			try {
@@ -138,7 +138,7 @@ public class clientClient extends clientObject {
 	 * @param data bytearray
 	 * @return
 	 */
-	public byte[] rsaDecrypt(byte[] encryptedData) {
+	public byte[] decryptMessage(byte[] encryptedData) {
 		 
 	  Cipher cipher;
 	  byte[] cipherData = null;

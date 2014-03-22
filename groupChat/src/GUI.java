@@ -23,7 +23,7 @@ public class GUI extends JFrame {
 	private String server;
 	public GUI() {
         	// set up window
-	       setTitle("Simple example");
+	       setTitle("Secure Group Chat Client");
 	       setSize(550, 500);
 	       setLocationRelativeTo(null);
 	       setDefaultCloseOperation(EXIT_ON_CLOSE); 
