@@ -45,6 +45,8 @@ public class groupChatServer {
 	 * @param args
 	 */
 	public static void main(String[] args) throws IOException {
+		parseargs(args); // arguments supplied on the commandline invocation
+
 		myServerHostName = java.net.InetAddress.getLocalHost().getHostName(); // get my hostname
 		myServerIPAddress = java.net.InetAddress.getLocalHost().getHostAddress().toString(); // my IP address
 		System.out.println("Hostname " + myServerHostName +", IP Address " + myServerIPAddress +", Port " + serverPort);
@@ -77,6 +79,8 @@ public class groupChatServer {
 			// ask for Session Name
 			String sessionName = "";
 			String sessionId = "";
+			sessionName = serverQuerysClient(client, "Enter name of session to join?");
+			
 			// does Session exist?
 				sessionId = lookupSessionID(sessionName);
 				if (! sessionId.isEmpty() ) {
@@ -230,11 +234,11 @@ public class groupChatServer {
 	static void displayUsage () {
 		System.out.println("");
 		System.out.println("");
-		System.out.println("USAGE: <JAVA> <JAVARGS> groupChatServer <ServerHostname>  -P <nnn> -HELP");
+		System.out.println("USAGE: <JAVA>  -cp . <JAVARGS> groupChatServer <ServerHostname>  -P <nnn> -HELP");
 		System.out.println("");
-		System.out.println("-P <number> (1 - 65535)  [OPTIONAL] post number to connect to IRC server on.");
+		System.out.println("-P <number> (1 - 65535)  [OPTIONAL] port number to listen on.");
 	    System.out.println("");
-		System.out.println("ServerHostname  the name or IP Adress of the IRC Server");
+		System.out.println("ServerHostname  the name or IP Address of the secureGroupChat Server");
 	    System.out.println("");
 		System.out.println("-HELP   prints this help screen on the console.");
 		System.out.println("");
