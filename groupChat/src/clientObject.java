@@ -1,3 +1,5 @@
+import java.security.Key;
+
 /**
  * CS475 Secure Group Chat Server 
  * Ken Fox, Gavin Rapp, Andrea Pavia
@@ -17,6 +19,8 @@ public class clientObject {
 	protected String id;
 	protected boolean accepted;
 	protected privs clientPrivs;
+	protected Key keyPublic;
+	
 	
 	clientObject() {
 		// creates a new id string for a client object
@@ -60,6 +64,18 @@ public class clientObject {
 	public void setAccepted(boolean accepted) {
 		this.accepted = accepted;
 	};
-	
+	/**
+	 * @return the keyPublic
+	 */
+	protected Key getKeyPublic() {
+		return keyPublic;
+	}
+
+	/**
+	 * @param keyPublic the keyPublic to set
+	 */
+	protected void setKeyPublic(Key keyPublic) {
+		this.keyPublic = keyPublic;
+	};
 	
 }
