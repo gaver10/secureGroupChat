@@ -98,6 +98,12 @@ public class clientClient extends clientObject {
 	// 	String decoded = new String(bytes, "UTF-8"); 
 	//	http://stackoverflow.com/questions/5673059/converting-byte-array-to-string-java
 	
+	
+	
+	
+	
+	
+	
 	// 	http://docs.oracle.com/javase/7/docs/api/javax/crypto/Cipher.html	
 	/**
 	 * this routine encrypts the byte Array with the the public key and
